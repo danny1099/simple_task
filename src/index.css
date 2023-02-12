@@ -1,0 +1,21 @@
+:root {
+  --font-family: 'Poppins', 'Roboto Mono';
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  font-family: var(--font-family);
+  overflow-x: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --font-family: 'Poppins', 'Roboto Mono';
+  }
+}
