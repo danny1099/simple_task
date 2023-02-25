@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { parseCookies, setCookie } from 'nookies'
 
-const initialState = parseCookies()?.theme || 'system'
+const initialState = parseCookies()?.theme || 'light'
 
 export const themeSlice = createSlice({
   name: 'theme',

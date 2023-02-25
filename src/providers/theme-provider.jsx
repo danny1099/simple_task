@@ -6,8 +6,7 @@ import { useEffect } from 'react'
 
 const STACK_THEMES = {
   light: lightScheme,
-  dark: darkScheme,
-  system: lightScheme
+  dark: darkScheme
 }
 
 export function ThemeProviders({ children }) {
@@ -15,11 +14,9 @@ export function ThemeProviders({ children }) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (theme === 'system') {
-      window
-        .matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener('change', handlePrefersColorScheme)
-    }
+    window
+      .matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', handlePrefersColorScheme)
 
     return () => {
       window

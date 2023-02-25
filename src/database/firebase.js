@@ -1,6 +1,15 @@
 import { initializeApp } from 'firebase/app'
 import { getStorage } from 'firebase/storage'
-import { getFirestore } from 'firebase/firestore'
+import {
+  getFirestore,
+  doc,
+  deleteDoc,
+  addDoc,
+  collection,
+  getDocs,
+  getDoc,
+  updateDoc
+} from 'firebase/firestore'
 import { firebaseConfig } from './config'
 import {
   getAuth,
@@ -20,5 +29,12 @@ export {
   GoogleAuthProvider,
   signInWithPopup,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  doc,
+  updateDoc,
+  deleteDoc,
+  addDoc,
+  collection,
+  getDocs,
+  getDoc
 }

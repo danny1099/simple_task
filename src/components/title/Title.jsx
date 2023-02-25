@@ -10,6 +10,6 @@ export const TitleStyled = styled.h1`
   line-height: 1;
 `
 
-export default function Title({ text, ...props }) {
+export function Title({ text, ...props }) {
   return <TitleStyled {...props}>{text}</TitleStyled>
 }

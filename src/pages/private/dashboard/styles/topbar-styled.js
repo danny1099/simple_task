@@ -22,32 +22,32 @@ export const Wrapper = styled.div`
   }
 `
 
-export const NavbarBrand = styled.div`
+export const TopbarBrand = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
 
-  & > h1 {
-    font-size: 1.2rem;
-  }
-
   /* Media querys para dispositivos mobiles */
   @media screen and (max-width: 768px) {
-    & > h1 {
+    & h1 {
       display: none;
     }
   }
 `
 
-export const NavbarItems = styled.nav`
+export const TopbarItems = styled.nav`
   display: grid;
   grid-auto-flow: column;
   height: 100%;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.7rem;
+
+  & svg.log-out {
+    fill: ${({ theme }) => theme.icons.primary};
+  }
 
   /* Media querys para dispositivos mobiles */
   @media screen and (max-width: 768px) {
-    gap: 0.2rem;
+    gap: 1rem;
   }
 `

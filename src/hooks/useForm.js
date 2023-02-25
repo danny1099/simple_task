@@ -4,7 +4,8 @@ import { validateEmail, validatePassword } from '@/helpers/inputs-validators'
 
 const TYPES_VALIDATOR = {
   email: { validate: (value) => validateEmail(value) },
-  password: { validate: (value) => validatePassword(value) }
+  password: { validate: (value) => validatePassword(value) },
+  text: { validate: (value) => {} }
 }
 
 export const useForm = (initialState = {}) => {
@@ -29,7 +30,7 @@ export const useForm = (initialState = {}) => {
   }
 
   const reset = () => {
-    setValues(initialState)
+    setValues({})
     setErrors({})
   }
 

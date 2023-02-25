@@ -1,18 +1,15 @@
-import { Navbar } from '@/components/nabvar'
-import { NavLink } from '@/components/navlink'
-import { Separator } from '@/components/separator'
-import { ToggleTheme } from '@/components/toggle'
 import { H2 } from '@/components/text'
 import { Button } from '@/components/buttons'
+import { Navbar } from '@/components/nabvar'
 import { TextInput, InputPassword } from '@/components/inputs'
 import { MdOutlineMailOutline } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import { privateRoutes, publicRoutes } from '@/routes/stack-routes'
-import { SingProvider } from '@/pages/auth/components/SingProvider'
 import { registerWithCredentials } from '@/services'
-import { useForm } from '@/hooks/useForm'
+import { useForm } from '@/hooks'
 import { signIn } from '@/redux/slices/userSlice'
 import { useDispatch } from 'react-redux'
+import { SingProvider } from '@/pages/auth/components/SingProvider'
 import { Container, Content, Wrapper } from '@/pages/auth/styles'
 
 const NAVIGATE_LINKS = [
@@ -50,33 +47,25 @@ export default function Register() {
 
   return (
     <Container>
-      <Navbar>
-        {NAVIGATE_LINKS.map(({ id, href, text, variant }) => {
-          return <NavLink key={id} to={href} text={text} variant={variant} />
-        })}
-
-        <Separator />
-        <ToggleTheme />
-      </Navbar>
+      <Navbar showTittle={true} routes={NAVIGATE_LINKS} />
 
       <Content>
         <Wrapper>
           <H2 text="Sign up" size="3rem" />
           <form onSubmit={handleSubmit}>
             <TextInput
-              required
               name="email"
               label="Email"
-              placeholder="Enter your email address..."
               type="email"
+              placeholder="Enter your email address..."
               onChange={handleInputChange}
               helperText={errors.email?.message}
               helperColor={errors.email?.status}
               contentRight={<MdOutlineMailOutline fill="#7a7a7a" />}
               width="100%"
+              required
             />
             <InputPassword
-              required
               name="password"
               label="Password"
               placeholder="Enter your current password..."
@@ -84,6 +73,7 @@ export default function Register() {
               helperText={errors.password?.message}
               helperColor={errors.password?.status}
               width="100%"
+              required
             />
             <Button
               type="submit"

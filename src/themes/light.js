@@ -4,7 +4,7 @@ export const lightScheme = {
     background: '#ffffff',
     topbar: '#fafafa',
     font: 'var(--font-family)',
-    secondary: '#ffffff'
+    secondary: '#f3f3f3'
   },
   text: {
     family: 'Poppins',
@@ -62,6 +62,11 @@ export const lightScheme = {
   icons: {
     primary: '#7a7a7a',
     selected: '#7a7a7a',
-    theme: '#22242c'
+    theme: '#7a7a7a'
+  },
+  tasks: {
+    background: '#ffffff',
+    color: '#252525',
+    shadow: 'rgba(0, 0, 0, 0.2) 0px 1px 4px 0px'
   }
 }

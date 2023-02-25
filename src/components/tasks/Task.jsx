@@ -1,27 +1,53 @@
 import { Checkbox } from '@nextui-org/react'
-import { TextInput } from '@/components/inputs'
 import { ItemLayout, Item, Action } from './styles/task-styled'
-import { BsCalendar4Week } from 'react-icons/bs'
-import { Label } from '@/components/labels'
+import { AiOutlineDelete } from 'react-icons/ai'
+import { Separator } from '@/components/separator'
+import { deleteTask, completeTask } from '@/services'
+import { useDispatch } from 'react-redux'
+import { getAllTasks } from '@/redux/slices/taskSlice'
+import { useState, useEffect } from 'react'
+import { Tag } from './Tag'
 
-export default function Task({ text, completed }) {
+export function Task({ id, text, completed, category }) {
+  const [selected, setSelected] = useState(completed)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    handleUpdateTask()
+  }, [selected])
+
+  const handleDeleteTask = async () => {
+    await deleteTask(id).then(() => dispatch(getAllTasks()))
+  }
+
+  const handleUpdateTask = async () => {
+    await completeTask(id, selected).then(() => dispatch(getAllTasks()))
+  }
+
   return (
     <ItemLayout>
       <Item>
-        <Checkbox color="success" isSelected={completed} aria-label />
-        <TextInput
-          initialValue={text}
-          placeholder="Enter a description of your task..."
-          aria-label
-          width="100%"
-        />
-
-        {/* Actions to task  */}
-        <Action>
-          <BsCalendar4Week size={20} color="#7a7a7a" />
-          <Label text="house" color="error" aria-label />
-        </Action>
+        <Checkbox
+          className="check-item"
+          color="gradient"
+          isSelected={selected}
+          isRounded
+          onChange={setSelected}
+        >
+          {text}
+        </Checkbox>
       </Item>
+
+      <Action>
+        <Tag text={category} id={id} />
+        <Separator />
+        <AiOutlineDelete
+          size={20}
+          color="#ff726f"
+          cursor="pointer"
+          onClick={() => handleDeleteTask()}
+        />
+      </Action>
     </ItemLayout>
   )
 }

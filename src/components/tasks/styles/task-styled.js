@@ -2,40 +2,35 @@ import styled from 'styled-components'
 
 export const ItemLayout = styled.div`
   align-items: center;
-  background-color: ${({ theme }) => theme.body.secondary};
+  background-color: ${({ theme }) => theme.tasks.background};
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 4px 0px;
-  color: ${({ theme }) => theme.text.primary};
+  box-shadow: ${({ theme }) => theme.tasks.shadow};
   display: flex;
   flex-direction: row;
   max-height: 60px;
   padding: 1rem;
   width: 100%;
-
-  & label {
-    background-color: ${({ theme }) => theme.body.secondary};
-
-    & input {
-      color: ${({ theme }) => theme.text.primary};
-    }
-  }
-
-  & svg {
-    fill: ${({ theme }) => theme.icons.primary};
-  }
 `
 
 export const Item = styled.div`
   align-items: center;
   display: flex;
   flex-direction: row;
+  height: 30px;
   gap: 0.7rem;
-  width: 100%;
+  width: 90%;
+
+  & span {
+    font-size: 0.8rem;
+    color: ${({ theme }) => theme.tasks.color};
+  }
 `
 
 export const Action = styled.div`
-  display: grid;
-  grid-auto-flow: column;
-  gap: 1rem;
   align-items: center;
+  display: grid;
+  gap: 0.7rem;
+  grid-auto-flow: column;
+  height: 30px;
+  width: auto;
 `

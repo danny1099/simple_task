@@ -1,11 +1,7 @@
-import { Navbar } from '@/components/nabvar'
-import { NavLink } from '@/components/navlink'
-import { Separator } from '@/components/separator'
-import { ToggleTheme } from '@/components/toggle'
 import { H2 } from '@/components/text'
 import { Button } from '@/components/buttons'
 import { TextInput, InputPassword } from '@/components/inputs'
-import { SingProvider } from '@/pages/auth/components/SingProvider'
+import { Navbar } from '@/components/nabvar'
 import { MdOutlineMailOutline } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import { privateRoutes, publicRoutes } from '@/routes/stack-routes'
@@ -13,6 +9,7 @@ import { useForm } from '@/hooks'
 import { loginWithCredentials } from '@/services'
 import { signIn } from '@/redux/slices/userSlice'
 import { useDispatch } from 'react-redux'
+import { SingProvider } from '@/pages/auth/components/SingProvider'
 import { Container, Content, Wrapper } from '@/pages/auth/styles'
 
 const NAVIGATE_LINKS = [
@@ -50,33 +47,25 @@ export default function Login() {
 
   return (
     <Container>
-      <Navbar>
-        {NAVIGATE_LINKS.map(({ id, href, text, variant }) => {
-          return <NavLink key={id} to={href} text={text} variant={variant} />
-        })}
-
-        <Separator />
-        <ToggleTheme />
-      </Navbar>
+      <Navbar showTittle={true} routes={NAVIGATE_LINKS} />
 
       <Content>
         <Wrapper>
           <H2 text="Log in" size="3rem" />
           <form onSubmit={handleSubmit}>
             <TextInput
-              required
               name="email"
               label="Email"
-              placeholder="Enter your email address..."
               type="email"
+              placeholder="Enter your email address..."
               onChange={handleInputChange}
               helperText={errors.email?.message}
               helperColor={errors.email?.status}
               contentRight={<MdOutlineMailOutline fill="#7a7a7a" />}
               width="100%"
+              required
             />
             <InputPassword
-              required
               name="password"
               label="Password"
               placeholder="Enter your current password..."
@@ -84,6 +73,7 @@ export default function Login() {
               helperText={errors.password?.message}
               helperColor={errors.password?.status}
               width="100%"
+              required
             />
             <Button
               variant="primary"

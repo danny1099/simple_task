@@ -1,8 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleTheme } from '@/redux/slices/themeSlice'
-import { Switch } from '@nextui-org/react'
-import { BsSun } from 'react-icons/bs'
-import { RiMoonFoggyLine } from 'react-icons/ri'
+import { Icon, IconTheme } from './icon-theme'
 
 export function ToggleTheme() {
   const theme = useSelector((store) => store.theme)
@@ -13,13 +11,13 @@ export function ToggleTheme() {
   }
 
   return (
-    <Switch
-      checked={theme !== 'light'}
-      color="transparen"
-      size="md"
-      iconOn={<BsSun size={20} color="#22242c" />}
-      iconOff={<RiMoonFoggyLine size={20} color="#22242c" />}
-      onChange={() => switchTheme()}
-    />
+    <IconTheme>
+      <Icon
+        theme={theme}
+        size={20}
+        cursor="pointer"
+        onClick={() => switchTheme()}
+      />
+    </IconTheme>
   )
 }

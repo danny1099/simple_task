@@ -17,4 +17,8 @@ export const Button = styled.button`
   padding: 0.9rem 0;
   text-decoration: none;
   width: ${(props) => props.width || '150px'};
+
+  & > svg {
+    margin-right: 10px;
+  }
 `

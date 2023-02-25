@@ -1,101 +1,66 @@
-import { Navbar } from '@/components/nabvar'
-import { Separator } from '@/components/separator'
-import { ToggleTheme } from '@/components/toggle'
-import { TaskList } from '@/components/tasks/TaskList'
-import { Avatar } from '@nextui-org/react'
-import { useSelector } from 'react-redux'
-import { Container, Content } from './styles'
-import { TaskHeader } from '@/components/tasks/TaskHeader'
-
-const DEMO_TASK = [
-  {
-    userId: 1,
-    id: 1,
-    title: 'delectus aut autem',
-    completed: true
-  },
-  {
-    userId: 1,
-    id: 2,
-    title: 'quis ut nam facilis et officia qui',
-    completed: false
-  },
-  {
-    userId: 1,
-    id: 3,
-    title: 'fugiat veniam minus',
-    completed: false
-  },
-  {
-    userId: 1,
-    id: 4,
-    title: 'et porro tempora',
-    completed: true
-  },
-  {
-    userId: 1,
-    id: 5,
-    title: 'laboriosam mollitia et enim quasi adipisci quia provident illum',
-    completed: false
-  },
-  {
-    userId: 1,
-    id: 6,
-    title: 'qui ullam ratione quibusdam voluptatem quia omnis',
-    completed: false
-  },
-  {
-    userId: 1,
-    id: 7,
-    title: 'illo expedita consequatur quia in',
-    completed: false
-  },
-  {
-    userId: 1,
-    id: 8,
-    title: 'quo adipisci enim quam ut ab',
-    completed: true
-  },
-  {
-    userId: 1,
-    id: 9,
-    title: 'molestiae perspiciatis ipsa',
-    completed: false
-  },
-  {
-    userId: 1,
-    id: 10,
-    title: 'illo est ratione doloremque quia maiores aut',
-    completed: true
-  }
-]
+import { Topbar } from './components/Topbar'
+import { TitleGradient } from '@/components/title/TitleGradient'
+import { P } from '@/components/text'
+import { Task } from '@/components/tasks/Task'
+import { useDispatch, useSelector } from 'react-redux'
+import { getTask, getAllTasks } from '@/redux/slices/taskSlice'
+import { useState, useMemo, useEffect } from 'react'
+import { CreateTask } from './components/CreateTask'
+import { Container, Content, Header, TaskContainer } from './styles'
 
 export default function Dashboard() {
-  const userLogged = useSelector((state) => state.users)
+  const [selected, setSelected] = useState(new Set(['pending']))
+  const user = useSelector((state) => state.users)
+  const tasks = useSelector(getTask)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getAllTasks())
+  }, [])
+
+  const selectedValue = useMemo(
+    () => Array.from(selected).join(', ').replaceAll('_', ' '),
+    [selected]
+  )
 
   return (
     <Container>
-      <Navbar showTittle={false}>
-        <ToggleTheme />
-        <Separator />
-
-        {/* Avatar of user logged */}
-        <Avatar
-          size="md"
-          src={userLogged.photoURL}
-          color="secondary"
-          textColor="white"
-          zoomed
-          bordered
-          pointer
-        />
-      </Navbar>
+      <Topbar user={user} showTittle />
 
       <Content>
-        <TaskHeader text="Hola, Danny" />
+        <Header>
+          <div className="header-title">
+            <TitleGradient text="Hi, Danny" size="2rem" />
+            <P margin="0 0 5px 0">
+              These are all the tasks found with the filter
+              <strong> {selectedValue} </strong>
+            </P>
+          </div>
 
-        {/* Load all task of user */}
-        <TaskList allTask={DEMO_TASK} />
+          <CreateTask user={user} selected={selected} filtered={setSelected} />
+        </Header>
+
+        <TaskContainer>
+          {tasks
+            ?.filter((item) => {
+              if (selectedValue === 'all') return true
+              return selectedValue === 'pending'
+                ? item.completed === false
+                : item.completed === true
+            })
+            ?.map(({ id, title, completed, category }) => {
+              return (
+                <Task
+                  key={id}
+                  id={id}
+                  text={title}
+                  completed={completed}
+                  category={category}
+                />
+              )
+            })
+            .reverse()}
+        </TaskContainer>
       </Content>
     </Container>
   )

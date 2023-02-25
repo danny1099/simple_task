@@ -1,10 +1,10 @@
 export const darkScheme = {
   name: 'dark',
   body: {
-    background: '#292929',
+    background: '#2D2D2D',
     topbar: '#252525',
     font: 'var(--font-family)',
-    secondary: '#222222'
+    secondary: '#151515'
   },
   text: {
     family: 'Poppins',
@@ -63,5 +63,10 @@ export const darkScheme = {
     primary: '#ffffff',
     selected: '#7a7a7a',
     theme: '#FEC260'
+  },
+  tasks: {
+    background: '#2D2D2D',
+    color: '#fff',
+    shadow: 'rgba(0, 0, 0, 0.6) 0px 1px 4px 0px'
   }
 }

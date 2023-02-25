@@ -1,10 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { publicRoutes } from '@/routes/stack-routes'
-import { Navbar } from '@/components/nabvar'
-import { NavLink } from '@/components/navlink'
-import { Separator } from '@/components/separator'
-import { ToggleTheme } from '@/components/toggle'
 import { P } from '@/components/text'
+import { Navbar } from '@/components/nabvar'
 import { Button } from '@/components/buttons/Button'
 import { TitleGradient } from '@/components/title/TitleGradient'
 import { Container, Content, ContentIntro, ContentView } from './styles'
@@ -28,14 +25,7 @@ export default function Home() {
 
   return (
     <Container>
-      <Navbar>
-        {NAVIGATE_LINKS.map(({ id, href, text, variant }) => {
-          return <NavLink key={id} to={href} text={text} variant={variant} />
-        })}
-
-        <Separator />
-        <ToggleTheme />
-      </Navbar>
+      <Navbar showTittle={true} routes={NAVIGATE_LINKS} />
 
       <Content>
         <ContentIntro>
