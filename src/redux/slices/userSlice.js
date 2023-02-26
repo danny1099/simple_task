@@ -23,4 +23,6 @@ export const userSlice = createSlice({
   }
 })
 
+export const getUser = (state) => state.users
+
 export const { signIn, logOut } = userSlice.actions

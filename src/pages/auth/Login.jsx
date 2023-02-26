@@ -31,7 +31,7 @@ export default function Login() {
     e.preventDefault()
 
     /* Setea los valores de los inputs */
-    !errors && loginWithEmailAndPassword()
+    loginWithEmailAndPassword()
   }
 
   const loginWithEmailAndPassword = async () => {

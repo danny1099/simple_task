@@ -3,25 +3,22 @@ import { ItemLayout, Item, Action } from './styles/task-styled'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { Separator } from '@/components/separator'
 import { deleteTask, completeTask } from '@/services'
-import { useDispatch } from 'react-redux'
-import { getAllTasks } from '@/redux/slices/taskSlice'
 import { useState, useEffect } from 'react'
 import { Tag } from './Tag'
 
 export function Task({ id, text, completed, category }) {
   const [selected, setSelected] = useState(completed)
-  const dispatch = useDispatch()
 
   useEffect(() => {
     handleUpdateTask()
   }, [selected])
 
   const handleDeleteTask = async () => {
-    await deleteTask(id).then(() => dispatch(getAllTasks()))
+    await deleteTask(id)
   }
 
   const handleUpdateTask = async () => {
-    await completeTask(id, selected).then(() => dispatch(getAllTasks()))
+    await completeTask(id, selected)
   }
 
   return (

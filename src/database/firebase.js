@@ -8,7 +8,10 @@ import {
   collection,
   getDocs,
   getDoc,
-  updateDoc
+  updateDoc,
+  query,
+  where,
+  onSnapshot
 } from 'firebase/firestore'
 import { firebaseConfig } from './config'
 import {
@@ -36,5 +39,8 @@ export {
   addDoc,
   collection,
   getDocs,
-  getDoc
+  getDoc,
+  query,
+  where,
+  onSnapshot
 }

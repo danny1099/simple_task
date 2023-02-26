@@ -1,4 +1,4 @@
-import { AiOutlineTags } from 'react-icons/ai'
+import { BsTag } from 'react-icons/bs'
 import { Tagged } from './Tagged'
 import { Badge } from '@nextui-org/react'
 
@@ -24,7 +24,7 @@ export function Tag({ id, text, ...props }) {
           {text}
         </Badge>
       ) : (
-        <AiOutlineTags size={20} color="#7a7a7a" />
+        <BsTag size={20} color="#7a7a7a" />
       )}
     </Tagged>
   )

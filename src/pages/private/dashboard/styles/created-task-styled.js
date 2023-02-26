@@ -16,6 +16,11 @@ export const Wrapper = styled.div`
     gap: 0.5rem;
     height: 50px;
     width: 80%;
+
+    & div,
+    label {
+      background-color: ${({ theme }) => theme.inputs.background};
+    }
   }
 
   /* Media querys para dispositivos mobiles */

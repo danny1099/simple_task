@@ -1,20 +1,8 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { getAllTask } from '@/services'
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  tasks: [],
-  status: 'idle',
-  error: null
+  tasks: []
 }
-
-export const getAllTasks = createAsyncThunk('task/getAllTasks', async () => {
-  try {
-    const result = await getAllTask()
-    return result
-  } catch (error) {
-    return error.message
-  }
-})
 
 export const taskSlice = createSlice({
   name: 'task',
@@ -26,20 +14,6 @@ export const taskSlice = createSlice({
     allTask: (state, action) => {
       state.tasks = action.payload
     }
-  },
-  extraReducers(builder) {
-    builder
-      .addCase(getAllTasks.pending, (state, action) => {
-        state.status = 'pending'
-      })
-      .addCase(getAllTasks.fulfilled, (state, action) => {
-        state.status = 'fulfilled'
-        state.tasks = action.payload
-      })
-      .addCase(getAllTasks.rejected, (state, action) => {
-        state.status = 'rejected'
-        state.error = action.error.message
-      })
   }
 })
 
@@ -47,4 +21,4 @@ export const taskSlice = createSlice({
 export const getTask = (state) => state.tasks.tasks
 
 /* Export functions reducer */
-export const { newTask, allTask, updateTask, erasedTask } = taskSlice.actions
+export const { newTask, allTask } = taskSlice.actions

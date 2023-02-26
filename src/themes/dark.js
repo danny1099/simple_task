@@ -62,7 +62,7 @@ export const darkScheme = {
   icons: {
     primary: '#ffffff',
     selected: '#7a7a7a',
-    theme: '#FEC260'
+    theme: '#ffffff'
   },
   tasks: {
     background: '#2D2D2D',

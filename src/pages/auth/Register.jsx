@@ -31,7 +31,7 @@ export default function Register() {
     e.preventDefault()
 
     /* Setea los valores de los inputs */
-    !errors && registerWithEmailAndPassword()
+    registerWithEmailAndPassword()
   }
 
   const registerWithEmailAndPassword = async () => {

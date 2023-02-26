@@ -3,13 +3,10 @@ import { Button } from '@/components/buttons'
 import { TextInput } from '@/components/inputs'
 import { Filter } from './Filter'
 import { createTask } from '@/services'
-import { useDispatch } from 'react-redux'
-import { newTask } from '@/redux/slices/taskSlice'
 import { Wrapper } from '../styles/created-task-styled'
 
 export function CreateTask({ user, selected, filtered }) {
   const { value, reset, bindings } = useInput('')
-  const dispatch = useDispatch()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -24,8 +21,7 @@ export function CreateTask({ user, selected, filtered }) {
     }
 
     /* Ejecuta la funcion para crear el recurso desde el servicio */
-    await createTask(addedTask).then((data) => {
-      dispatch(newTask(data))
+    await createTask(addedTask).then(() => {
       reset('')
     })
   }
