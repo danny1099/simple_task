@@ -2,37 +2,51 @@ import { Trigger, Menu, Item } from '@/components/dropdown/Menu'
 import { categoryTask } from '@/services'
 import { Dropdown } from '@nextui-org/react'
 import { useState, useMemo, useEffect } from 'react'
+import {
+  BsUiChecksGrid,
+  BsLaptop,
+  BsHandbag,
+  BsCart3,
+  BsGeo,
+  BsHouseDoor
+} from 'react-icons/bs'
 
 const menuItems = [
   {
     key: 'home',
     name: 'home',
-    color: 'error'
+    color: 'error',
+    icon: <BsHouseDoor size={18} />
   },
   {
     key: 'work',
     name: 'work',
-    color: 'secondary'
+    color: 'secondary',
+    icon: <BsUiChecksGrid size={18} />
   },
   {
     key: 'clothes',
     name: 'clothes',
-    color: 'primary'
+    color: 'primary',
+    icon: <BsHandbag size={18} />
   },
   {
     key: 'food',
     name: 'food',
-    color: 'success'
+    color: 'success',
+    icon: <BsCart3 size={18} />
   },
   {
     key: 'trips',
     name: 'trips',
-    color: 'warning'
+    color: 'warning',
+    icon: <BsGeo size={18} />
   },
   {
     key: 'study',
     name: 'study',
-    color: 'default'
+    color: 'default',
+    icon: <BsLaptop size={18} />
   }
 ]
 
@@ -64,8 +78,8 @@ export function Tagged({ id, refresh, children }) {
         selectionMode="single"
         onSelectionChange={setSelected}
       >
-        {({ key, name, color }) => (
-          <Item key={key} color={color}>
+        {({ key, name, color, icon }) => (
+          <Item key={key} color={color} icon={icon}>
             {name}
           </Item>
         )}

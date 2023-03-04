@@ -5,12 +5,13 @@ export const Content = styled.div`
   background-color: ${({ theme }) => theme.body.background};
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: calc(100% - 60px);
   padding: 2rem;
   width: 100%;
 
   /* Media querys para dispositivos mobiles */
   @media screen and (max-width: 768px) {
+    height: calc(100% - 70px);
     padding: 0;
   }
 `
