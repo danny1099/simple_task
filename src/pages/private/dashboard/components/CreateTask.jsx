@@ -4,6 +4,7 @@ import { TextInput } from '@/components/inputs'
 import { Filter } from './Filter'
 import { createTask } from '@/services'
 import { Wrapper } from '../styles/created-task-styled'
+import { toast } from 'react-toastify'
 
 export function CreateTask({ user, selected, filtered }) {
   const { value, reset, bindings } = useInput('')
@@ -23,6 +24,7 @@ export function CreateTask({ user, selected, filtered }) {
     /* Ejecuta la funcion para crear el recurso desde el servicio */
     await createTask(addedTask).then(() => {
       reset('')
+      toast.success('The task was registered successfully')
     })
   }
 

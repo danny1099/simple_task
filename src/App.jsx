@@ -10,6 +10,8 @@ import store from '@/redux/store'
 import Home from '@/pages/home'
 import Login from '@/pages/auth/Login'
 import Register from '@/pages/auth/Register'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Private = lazy(() => import('@/pages/private'))
 
@@ -36,6 +38,11 @@ function App() {
           </Layout>
         </ThemeProviders>
       </Suspense>
+      <ToastContainer
+        position="bottom-right"
+        hideProgressBar={true}
+        theme="colored"
+      />
     </Provider>
   )
 }

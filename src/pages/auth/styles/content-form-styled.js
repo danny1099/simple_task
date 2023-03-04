@@ -17,7 +17,8 @@ export const Wrapper = styled.div`
     margin-top: 1.5rem;
     width: 100%;
 
-    & label {
+    & label,
+    input {
       color: ${({ theme }) => theme.text.primary};
       font-size: small;
       margin: 0;

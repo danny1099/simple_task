@@ -5,6 +5,14 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword
 } from '@/database/firebase'
+import { toast } from 'react-toastify'
+
+const ERRORS_MESSAGES = {
+  'Firebase: Error (auth/email-already-in-use).':
+    'The email is already registered',
+  'Firebase: Error (auth/wrong-password).':
+    'The password or username is invalid'
+}
 
 export async function loginWithGoogle() {
   try {
@@ -14,7 +22,7 @@ export async function loginWithGoogle() {
     const { displayName, email, photoURL, uid } = response.user
     return { displayName, email, photoURL, uid }
   } catch (err) {
-    console.log(err.message)
+    toast.error(ERRORS_MESSAGES[err.message])
   }
 }
 
@@ -24,7 +32,7 @@ export async function registerWithCredentials(email, password) {
     const { displayName, photoURL, uid } = response.user
     return { displayName, email, photoURL, uid }
   } catch (err) {
-    console.error(err)
+    toast.error(ERRORS_MESSAGES[err.message])
   }
 }
 
@@ -34,6 +42,6 @@ export async function loginWithCredentials(email, password) {
     const { displayName, photoURL, uid } = response.user
     return { displayName, email, photoURL, uid }
   } catch (err) {
-    console.error(err)
+    toast.error(ERRORS_MESSAGES[err.message])
   }
 }

@@ -5,6 +5,7 @@ import { Separator } from '@/components/separator'
 import { deleteTask, completeTask } from '@/services'
 import { useState, useEffect } from 'react'
 import { Tag } from './Tag'
+import { toast } from 'react-toastify'
 
 const variants = {
   hidden: { opacity: 0 },
@@ -22,7 +23,9 @@ export function Task({ id, text, completed, category, index }) {
   }, [selected])
 
   const handleDeleteTask = async () => {
-    await deleteTask(id)
+    await deleteTask(id).then(() => {
+      toast.success('The task was successfully deleted')
+    })
   }
 
   const handleUpdateTask = async () => {
