@@ -10,6 +10,7 @@ import { Container, Content, Header, TaskContainer } from './styles'
 import { convertDocument } from '@/services'
 import { db, onSnapshot, query, collection, where } from '@/database/firebase'
 import { textSplit } from '@/helpers/text-split'
+import { AnimatePresence } from 'framer-motion'
 
 export default function Dashboard() {
   const [selected, setSelected] = useState(new Set(['pending']))
@@ -54,26 +55,28 @@ export default function Dashboard() {
           <CreateTask user={user} selected={selected} filtered={setSelected} />
         </Header>
 
-        <TaskContainer>
-          {tasks
-            ?.filter((item) => {
-              if (selectedValue === 'all') return true
-              return selectedValue === 'pending'
-                ? item.completed === false
-                : item.completed === true
-            })
-            ?.map(({ id, title, completed, category }) => {
-              return (
-                <Task
-                  key={id}
-                  id={id}
-                  text={title}
-                  completed={completed}
-                  category={category}
-                />
-              )
-            })
-            .reverse()}
+        <TaskContainer layout>
+          <AnimatePresence>
+            {tasks
+              ?.filter((item) => {
+                if (selectedValue === 'all') return true
+                return selectedValue === 'pending'
+                  ? item.completed === false
+                  : item.completed === true
+              })
+              ?.map((task, index) => {
+                return (
+                  <Task
+                    key={task.id}
+                    id={task.id}
+                    text={task.title}
+                    completed={task.completed}
+                    category={task.category}
+                    index={index}
+                  />
+                )
+              })}
+          </AnimatePresence>
         </TaskContainer>
       </Content>
     </Container>

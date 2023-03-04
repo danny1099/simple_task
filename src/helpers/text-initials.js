@@ -1,4 +1,4 @@
-export default function textInitials(text) {
+export function textInitials(text) {
   if (text.includes('@')) {
     return text.substring(0, 2).toUpperCase()
   }

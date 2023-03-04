@@ -5,9 +5,9 @@ import { ToggleTheme } from '@/components/toggle'
 import { useDispatch } from 'react-redux'
 import { logOut } from '@/redux/slices/userSlice'
 import { Avatar } from '@nextui-org/react'
-import { RiShutDownLine } from 'react-icons/ri'
+import { RiLogoutBoxLine } from 'react-icons/ri'
+import { textInitials } from '@/helpers/text-initials'
 import { Wrapper, TopbarBrand, TopbarItems } from '../styles/topbar-styled'
-import textInitials from '@/helpers/text-initials'
 
 export function Topbar({ showTittle, user }) {
   const dispatch = useDispatch()
@@ -24,13 +24,14 @@ export function Topbar({ showTittle, user }) {
       </TopbarBrand>
 
       <TopbarItems>
-        <RiShutDownLine
+        <ToggleTheme />
+        <RiLogoutBoxLine
           size={20}
           cursor="pointer"
           className="log-out"
           onClick={logOutSession}
         />
-        <ToggleTheme />
+
         <Separator />
 
         {/* Avatar of user logged */}

@@ -6,7 +6,15 @@ import { deleteTask, completeTask } from '@/services'
 import { useState, useEffect } from 'react'
 import { Tag } from './Tag'
 
-export function Task({ id, text, completed, category }) {
+const variants = {
+  hidden: { opacity: 0 },
+  visible: ({ delay }) => ({
+    opacity: 1,
+    transition: { delay, duration: 1 }
+  })
+}
+
+export function Task({ id, text, completed, category, index }) {
   const [selected, setSelected] = useState(completed)
 
   useEffect(() => {
@@ -22,14 +30,22 @@ export function Task({ id, text, completed, category }) {
   }
 
   return (
-    <ItemLayout>
+    <ItemLayout
+      variants={variants}
+      custom={{ delay: (index + 1) * 0.1 }}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      layoutId={id}
+    >
       <Item>
         <Checkbox
           className="check-item"
-          color="gradient"
+          color="success"
           isSelected={selected}
           isRounded
           onChange={setSelected}
+          aria-labelledby="task item"
         >
           {text}
         </Checkbox>

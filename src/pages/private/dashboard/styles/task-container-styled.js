@@ -1,6 +1,7 @@
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
-export const TaskContainer = styled.div`
+export const TaskContainer = styled(motion.div)`
   align-items: center;
   background-color: ${({ theme }) => theme.body.background};
   border-radius: 10px;
