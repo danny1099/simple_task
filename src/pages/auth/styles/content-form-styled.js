@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
   & form {
     align-items: center;
     display: grid;
-    gap: 1.8rem;
+    gap: 1.7rem;
     grid-auto-flow: row;
     margin-top: 1.5rem;
     width: 100%;
@@ -26,7 +26,12 @@ export const Wrapper = styled.div`
 
   /* Media querys para dispositivos mobiles */
   @media screen and (max-width: 768px) {
-    padding: 3rem 1.5rem 0 1.5rem;
+    padding: 4rem 2rem 0 2rem;
+    height: 60%;
     width: 100%;
+
+    & form {
+      width: 100%;
+    }
   }
 `

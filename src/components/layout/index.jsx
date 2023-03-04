@@ -3,9 +3,9 @@ import { Container } from './styles/layout-styled'
 
 export default function Layout({ children }) {
   return (
-    <Container>
-      {children}
+    <>
+      <Container>{children}</Container>
       <Footer />
-    </Container>
+    </>
   )
 }

@@ -6,19 +6,17 @@ export const Wrapper = styled.div`
   border-radius: 30px;
   display: flex;
   flex-direction: row;
+  height: 60px;
   justify-content: space-between;
-  left: 0;
   padding: 0.2rem 2rem;
   position: sticky;
-  top: 0;
-  height: 60px;
   width: 100%;
 
   /* Media querys para dispositivos mobiles */
   @media screen and (max-width: 768px) {
     border-radius: 0;
-    padding: 0.5rem 1rem;
     height: 70px;
+    padding: 0.5rem 1rem;
   }
 `
 

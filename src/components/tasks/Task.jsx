@@ -31,8 +31,8 @@ export function Task({ id, text, completed, category, index }) {
 
   return (
     <ItemLayout
-      variants={variants}
       custom={{ delay: (index + 1) * 0.1 }}
+      variants={variants}
       initial="hidden"
       animate="visible"
       exit="hidden"

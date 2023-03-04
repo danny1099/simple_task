@@ -3,12 +3,13 @@ import styled from 'styled-components'
 export const Content = styled.div`
   display: flex;
   flex-direction: row;
-  height: calc(100% - 30px);
+  height: calc(100% - 60px);
   width: 100%;
 
   /* Media querys para dispositivos mobiles */
   @media screen and (max-width: 768px) {
     flex-direction: column-reverse;
+    height: calc(100% - 70px);
     justify-content: flex-end;
   }
 `
@@ -17,17 +18,18 @@ export const ContentIntro = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: auto;
+  height: 100%;
   width: 40%;
+  padding: 1rem;
 
   /* Media querys para dispositivos mobiles */
   @media screen and (max-width: 768px) {
     height: 40%;
     width: 100%;
-    padding: 1rem;
+    padding: 1.5rem;
 
     & h2 {
-      font-size: 2.3rem;
+      font-size: 3rem;
     }
 
     & button {
@@ -37,11 +39,11 @@ export const ContentIntro = styled.div`
 `
 
 export const ContentView = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  height: 100%;
   justify-content: flex-end;
-  height: auto;
   width: 60%;
 
   & img {
@@ -52,13 +54,14 @@ export const ContentView = styled.div`
 
   /* Media querys para dispositivos mobiles */
   @media screen and (max-width: 768px) {
-    padding: 1rem;
     height: 45%;
+    justify-content: center;
+    padding: 1rem;
     width: 100%;
 
     & img {
-      height: 320px;
-      width: 320px;
+      height: 350px;
+      width: 350px;
       object-fit: contain;
     }
   }
