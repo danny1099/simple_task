@@ -13,7 +13,10 @@ export const userSlice = createSlice({
   initialState: parseCookies()?.users ? getDatafromCookie() : initialState,
   reducers: {
     signIn: (state, action) => {
-      setCookie(null, 'users', JSON.stringify(action.payload), { path: '/' })
+      setCookie(null, 'users', JSON.stringify(action.payload), {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/'
+      })
       return action.payload
     },
     logOut: () => {

@@ -44,7 +44,7 @@ export function Task({ id, text, completed, category, index }) {
       <Item>
         <Checkbox
           className="check-item"
-          color="success"
+          color="gradient"
           isSelected={selected}
           isRounded
           onChange={setSelected}

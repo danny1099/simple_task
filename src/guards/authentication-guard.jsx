@@ -9,7 +9,7 @@ const AuthGuard = () => {
   return userLogged.uid ? (
     <Outlet />
   ) : (
-    <Navigate replace to={publicRoutes.LOGIN} />
+    <Navigate replace to={`/${publicRoutes.LOGIN}`} />
   )
 }
 
