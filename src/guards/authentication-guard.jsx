@@ -5,12 +5,9 @@ import { publicRoutes } from '@/routes/stack-routes'
 
 const AuthGuard = () => {
   const userLogged = useSelector((state) => state.users)
+  console.log(userLogged)
 
-  return userLogged.uid ? (
-    <Outlet />
-  ) : (
-    <Navigate replace to={`/${publicRoutes.LOGIN}`} />
-  )
+  return userLogged.uid ? <Outlet /> : <Navigate to={`${publicRoutes.LOGIN}`} />
 }
 
 export default AuthGuard
