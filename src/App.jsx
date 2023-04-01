@@ -4,8 +4,8 @@ import { RoutesWithNotFound } from '@/routes/routes-with-notfound'
 import { privateRoutes, publicRoutes } from '@/routes/stack-routes'
 import { ThemeProviders } from '@/providers/theme-provider'
 import Layout from '@/components/layout'
-import AuthGuard from '@/guards/authentication-guard'
 import { Provider } from 'react-redux'
+import AuthGuard from '@/guards/authentication-guard'
 import store from '@/redux/store'
 import Home from '@/pages/home'
 import Login from '@/pages/auth/Login'
@@ -23,9 +23,11 @@ function App() {
           <Layout>
             <BrowserRouter>
               <RoutesWithNotFound>
-                <Route path={publicRoutes.HOME} element={<Home />} />
-                <Route path={publicRoutes.LOGIN} element={<Login />} />
-                <Route path={publicRoutes.REGISTER} element={<Register />} />
+                <Route path={publicRoutes.HOME}>
+                  <Route index element={<Home />} />
+                  <Route path={publicRoutes.LOGIN} element={<Login />} />
+                  <Route path={publicRoutes.REGISTER} element={<Register />} />
+                </Route>
 
                 <Route element={<AuthGuard />}>
                   <Route
@@ -38,6 +40,8 @@ function App() {
           </Layout>
         </ThemeProviders>
       </Suspense>
+
+      {/* Administrador de notificaciones */}
       <ToastContainer
         position="bottom-right"
         hideProgressBar={true}

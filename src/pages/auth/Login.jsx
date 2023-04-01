@@ -4,7 +4,7 @@ import { TextInput, InputPassword } from '@/components/inputs'
 import { Navbar } from '@/components/nabvar'
 import { MdOutlineMailOutline } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
-import { privateRoutes, publicRoutes } from '@/routes/stack-routes'
+import { publicRoutes } from '@/routes/stack-routes'
 import { useForm } from '@/hooks'
 import { loginWithCredentials } from '@/services'
 import { signIn } from '@/redux/slices/userSlice'
@@ -15,7 +15,7 @@ import { Container, Content, Wrapper } from '@/pages/auth/styles'
 const NAVIGATE_LINKS = [
   {
     id: 1,
-    href: `${publicRoutes.REGISTER}`,
+    href: `/${publicRoutes.REGISTER}`,
     text: 'Try Free',
     variant: 'primary'
   },
@@ -40,7 +40,7 @@ export default function Login() {
     await loginWithCredentials(email, password).then((data) => {
       if (data !== undefined) {
         dispatch(signIn(data))
-        navigate(`/private/${privateRoutes.DASHBOARD}`, { replace: false })
+        navigate('/private')
       }
     })
   }

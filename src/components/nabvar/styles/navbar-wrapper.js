@@ -12,6 +12,10 @@ export const Wrapper = styled.div`
   position: sticky;
   width: 100%;
 
+  & a {
+    text-decoration: none;
+  }
+
   /* Media querys para dispositivos mobiles */
   @media screen and (max-width: 768px) {
     border-radius: 0;

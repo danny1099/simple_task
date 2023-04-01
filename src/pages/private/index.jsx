@@ -9,7 +9,7 @@ export default function Private() {
   return (
     <RoutesWithNotFound>
       <Route path="/" element={<Navigate to={privateRoutes.DASHBOARD} />} />
-      <Route path={privateRoutes.DASHBOARD} element={<Dashboard />} />
+      <Route path="/dashboard" element={<Dashboard />} />
     </RoutesWithNotFound>
   )
 }

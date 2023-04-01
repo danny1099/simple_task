@@ -1,26 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { parseCookies, setCookie } from 'nookies'
 
-const initialState = {}
+const initialState = {
+  diplayName: '',
+  email: '',
+  photoUrl: '',
+  uid: '',
+  isLogged: false
+}
 
-const getDatafromCookie = () => {
-  const { users } = parseCookies()
-  return JSON.parse(users)
+const getDatafromStorage = () => {
+  const dataStorage = localStorage.getItem('users')
+  return JSON.parse(dataStorage)
 }
 
 export const userSlice = createSlice({
   name: 'users',
-  initialState: parseCookies()?.users ? getDatafromCookie() : initialState,
+  initialState: getDatafromStorage() ? getDatafromStorage() : initialState,
   reducers: {
     signIn: (state, action) => {
-      setCookie(null, 'users', JSON.stringify(action.payload), {
-        maxAge: 30 * 24 * 60 * 60,
-        path: '/'
-      })
-      return action.payload
+      localStorage.setItem(
+        'users',
+        JSON.stringify({ ...action.payload, isLogged: true })
+      )
+
+      return { ...action.payload, isLogged: true }
     },
     logOut: () => {
-      setCookie(null, 'users', null)
+      localStorage.removeItem('users')
       return initialState
     }
   }

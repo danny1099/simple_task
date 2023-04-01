@@ -9,18 +9,18 @@ import { Container, Content, ContentIntro, ContentView } from './styles'
 const NAVIGATE_LINKS = [
   {
     id: 1,
-    href: `${publicRoutes.REGISTER}`,
+    href: `/${publicRoutes.REGISTER}`,
     text: 'Try Free',
     variant: 'primary'
   },
-  { id: 2, href: `${publicRoutes.LOGIN}`, text: 'Log in', variant: 'default' }
+  { id: 2, href: `/${publicRoutes.LOGIN}`, text: 'Log in', variant: 'default' }
 ]
 
 export default function Home() {
   const navigate = useNavigate()
 
   const handleTryFreeButton = () => {
-    navigate(`${publicRoutes.REGISTER}`, { replace: true })
+    navigate(`/${publicRoutes.REGISTER}`, { replace: true })
   }
 
   return (
