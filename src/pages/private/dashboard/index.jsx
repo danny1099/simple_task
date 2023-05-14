@@ -11,8 +11,9 @@ import { convertDocument } from '@/services'
 import { db, onSnapshot, query, collection, where } from '@/database/firebase'
 import { textSplit } from '@/helpers/text-split'
 import { AnimatePresence } from 'framer-motion'
+import { withHead } from '@/hoc/withHead'
 
-export default function Dashboard() {
+function Dashboard() {
   const [selected, setSelected] = useState(new Set(['pending']))
   const user = useSelector((state) => state.users)
   const tasks = useSelector(getTask)
@@ -82,3 +83,5 @@ export default function Dashboard() {
     </Container>
   )
 }
+
+export default withHead(Dashboard, { title: 'Dashboad' })

@@ -5,6 +5,7 @@ import { Navbar } from '@/components/nabvar'
 import { Button } from '@/components/buttons/Button'
 import { TitleGradient } from '@/components/title/TitleGradient'
 import { Container, Content, ContentIntro, ContentView } from './styles'
+import { withHead } from '@/hoc/withHead'
 
 const NAVIGATE_LINKS = [
   {
@@ -16,7 +17,7 @@ const NAVIGATE_LINKS = [
   { id: 2, href: `/${publicRoutes.LOGIN}`, text: 'Log in', variant: 'default' }
 ]
 
-export default function Home() {
+function Home() {
   const navigate = useNavigate()
 
   const handleTryFreeButton = () => {
@@ -54,3 +55,5 @@ export default function Home() {
     </Container>
   )
 }
+
+export default withHead(Home, { title: 'Home' })

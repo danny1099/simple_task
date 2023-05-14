@@ -1,11 +1,11 @@
+import { handleToastMessage } from '@/helpers'
 import { Checkbox } from '@nextui-org/react'
 import { ItemLayout, Item, Action } from './styles/task-styled'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { Separator } from '@/components/separator'
 import { deleteTask, completeTask } from '@/services'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Tag } from './Tag'
-import { toast } from 'react-toastify'
 
 const variants = {
   hidden: { opacity: 0 },
@@ -16,7 +16,15 @@ const variants = {
 }
 
 export function Task({ id, text, completed, category, index }) {
+  const [firstTime, setFirstTime] = useState(true)
   const [selected, setSelected] = useState(completed)
+  const refTask = useRef()
+
+  useEffect(() => {
+    setFirstTime(false)
+
+    return () => setFirstTime(true)
+  }, [])
 
   useEffect(() => {
     handleUpdateTask()
@@ -24,14 +32,15 @@ export function Task({ id, text, completed, category, index }) {
 
   const handleDeleteTask = async () => {
     await deleteTask(id).then(() => {
-      toast.success('The task was successfully deleted')
+      handleToastMessage('deleteTask')
     })
   }
 
   const handleUpdateTask = async () => {
-    await completeTask(id, selected)
+    await completeTask(id, selected).then(() => {
+      !firstTime && handleToastMessage('updateTask')
+    })
   }
-
   return (
     <ItemLayout
       custom={{ delay: (index + 1) * 0.1 }}
@@ -41,7 +50,7 @@ export function Task({ id, text, completed, category, index }) {
       exit="hidden"
       layoutId={id}
     >
-      <Item>
+      <Item ref={refTask}>
         <Checkbox
           className="check-item"
           color="gradient"

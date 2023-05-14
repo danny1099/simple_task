@@ -5,18 +5,24 @@ import { signIn } from '@/redux/slices/userSlice'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { privateRoutes } from '@/routes/stack-routes'
+import { handleToastMessage } from '@/helpers'
 
 export function SingProvider({ text }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const signInWithGoogle = async () => {
-    await loginWithGoogle().then((data) => {
-      if (data !== undefined) {
-        dispatch(signIn(data))
-        navigate(`/private/${privateRoutes.DASHBOARD}`, { replace: true })
-      }
-    })
+    await loginWithGoogle()
+      .then((data) => {
+        if (data !== undefined) {
+          dispatch(signIn(data))
+          navigate(`/private/${privateRoutes.DASHBOARD}`, { replace: true })
+        }
+      })
+      .catch((e) => {
+        handleToastMessage('error')
+        console.log(e)
+      })
   }
 
   return (

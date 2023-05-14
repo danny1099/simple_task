@@ -5,7 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword
 } from '@/database/firebase'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 
 const ERRORS_MESSAGES = {
   'Firebase: Error (auth/email-already-in-use).':

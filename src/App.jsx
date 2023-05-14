@@ -8,10 +8,9 @@ import { Provider } from 'react-redux'
 import AuthGuard from '@/guards/authentication-guard'
 import store from '@/redux/store'
 import Home from '@/pages/home'
-import Login from '@/pages/auth/Login'
-import Register from '@/pages/auth/Register'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import Login from '@/pages/auth/login'
+import Register from '@/pages/auth/register'
+import { Toaster } from 'react-hot-toast'
 
 const Private = lazy(() => import('@/pages/private'))
 
@@ -42,11 +41,7 @@ function App() {
       </Suspense>
 
       {/* Administrador de notificaciones */}
-      <ToastContainer
-        position="bottom-right"
-        hideProgressBar={true}
-        theme="colored"
-      />
+      <Toaster />
     </Provider>
   )
 }

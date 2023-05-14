@@ -1,28 +1,30 @@
 import { H2 } from '@/components/text'
 import { Button } from '@/components/buttons'
-import { TextInput, InputPassword } from '@/components/inputs'
 import { Navbar } from '@/components/nabvar'
+import { TextInput, InputPassword } from '@/components/inputs'
 import { MdOutlineMailOutline } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import { publicRoutes } from '@/routes/stack-routes'
+import { registerWithCredentials } from '@/services'
 import { useForm } from '@/hooks'
-import { loginWithCredentials } from '@/services'
 import { signIn } from '@/redux/slices/userSlice'
 import { useDispatch } from 'react-redux'
 import { SingProvider } from '@/pages/auth/components/SingProvider'
 import { Container, Content, Wrapper } from '@/pages/auth/styles'
+import { handleToastMessage } from '@/helpers'
+import { withHead } from '@/hoc/withHead'
 
 const NAVIGATE_LINKS = [
   {
     id: 1,
-    href: `/${publicRoutes.REGISTER}`,
-    text: 'Try Free',
+    href: `/${publicRoutes.LOGIN}`,
+    text: 'Log in',
     variant: 'primary'
   },
   { id: 2, href: `${publicRoutes.HOME}`, text: 'Home', variant: 'default' }
 ]
 
-export default function Login() {
+function Register() {
   const [values, handleInputChange, errors] = useForm({})
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -31,18 +33,23 @@ export default function Login() {
     e.preventDefault()
 
     /* Setea los valores de los inputs */
-    loginWithEmailAndPassword()
+    registerWithEmailAndPassword()
   }
 
-  const loginWithEmailAndPassword = async () => {
+  const registerWithEmailAndPassword = async () => {
     const { email, password } = values
 
-    await loginWithCredentials(email, password).then((data) => {
-      if (data !== undefined) {
-        dispatch(signIn(data))
-        navigate('/private')
-      }
-    })
+    await registerWithCredentials(email, password)
+      .then((data) => {
+        if (data !== undefined) {
+          dispatch(signIn(data))
+          navigate('/private')
+        }
+      })
+      .catch((e) => {
+        handleToastMessage('error')
+        console.log(e)
+      })
   }
 
   return (
@@ -51,7 +58,7 @@ export default function Login() {
 
       <Content>
         <Wrapper>
-          <H2 text="Log in" size="3rem" />
+          <H2 text="Sign up" size="3rem" />
           <form onSubmit={handleSubmit}>
             <TextInput
               name="email"
@@ -76,20 +83,23 @@ export default function Login() {
               required
             />
             <Button
+              type="submit"
               variant="primary"
               height="40px"
               width="100%"
               br="20px"
               margin="10px 0 0 0"
             >
-              Sing in with email
+              Continue with email
             </Button>
           </form>
         </Wrapper>
 
         {/* Component to sing with google */}
-        <SingProvider text="Or Sing in with" />
+        <SingProvider text="Or Sing up with" />
       </Content>
     </Container>
   )
 }
+
+export default withHead(Register, { title: 'Register' })
