@@ -7,9 +7,8 @@ export const TaskContainer = styled(motion.div)`
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 10px;
   height: 100%;
-  max-height: 310px;
   overflow-y: auto;
   padding: 1rem 1.5rem;
   width: 70%;
